@@ -12,6 +12,8 @@ public class Currency : MonoBehaviour
     public Text IncomeText;
     public Button ChangeColorBack;
     public Button ChangeColorBuild;
+    public Toggle KeepBack;
+    public Toggle KeepBuild;
     int currency = 0;
     int incomePart = 0;
     Color Actualbackground = Color.white;
@@ -24,9 +26,22 @@ public class Currency : MonoBehaviour
     {
         incomePart = 0;
     }
+    public void NewColor()
+    {
+        if (!KeepBack.isOn)
+        {
+            ChangeColorBack.GetComponent<Image>().color = new Color(Random.Range(0.0f,1.0f),Random.Range(0.0f,1.0f),Random.Range(0.0f,1.0f));
+        }
+        if (!KeepBuild.isOn)
+        {
+            ChangeColorBuild.GetComponent<Image>().color = new Color(Random.Range(0.0f,1.0f),Random.Range(0.0f,1.0f),Random.Range(0.0f,1.0f));
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
+        KeepBack.isOn = false;
+        KeepBuild.isOn = false;
         ChangeColorBack.onClick.AddListener(() => OnClick(1));
         ChangeColorBuild.onClick.AddListener(() => OnClick(2));
     }
@@ -42,18 +57,22 @@ public class Currency : MonoBehaviour
     {
         if (type == 1)
         {
-            if (currency >= 1000)
+            if (currency >= 5000)
             {
                 Actualbackground = ChangeColorBack.GetComponent<Image>().color;
-                currency -= 1000;
+                ChangeColorBack.GetComponent<Image>().color = new Color(Random.Range(0.0f,1.0f),Random.Range(0.0f,1.0f),Random.Range(0.0f,1.0f));
+                currency -= 5000;
+                KeepBack.isOn = false;
             }
         }
         if (type == 2)
         {
-            if (currency >= 1000)
+            if (currency >= 5000)
             {
                 App.GetComponent<SwitchGameShop>().setBuildingColor(ChangeColorBuild.GetComponent<Image>().color);
-                currency -= 1000;
+                ChangeColorBuild.GetComponent<Image>().color = new Color(Random.Range(0.0f,1.0f),Random.Range(0.0f,1.0f),Random.Range(0.0f,1.0f));
+                currency -= 5000;
+                KeepBuild.isOn = false;
             }
         }
     }

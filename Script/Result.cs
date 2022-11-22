@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class Result : MonoBehaviour
 {
     public GameObject app;
+    public Canvas currency;
     public Image VictoryIcon;
     public Image GameOverIcon;
     public Text Victory;
@@ -44,5 +45,6 @@ public class Result : MonoBehaviour
     void OnClick()
     {
         app.GetComponent<SwitchGameShop>().setInresult(false);
+        currency.GetComponent<Currency>().NewColor();
     }
 }

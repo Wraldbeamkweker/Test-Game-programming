@@ -164,7 +164,7 @@ public class Clicker : MonoBehaviour
             if (ActualBuildF1<BuildNeedF1)
             {
                ActualBuildF1++;
-               int AlphaLevel = 100/BuildNeedF1;
+               float AlphaLevel = (100/BuildNeedF1)*0.01f;
                ActualColorF1.a = AlphaLevel*ActualBuildF1;
                buttonF1.GetComponent<Image>().color = ActualColorF1;
                textF1.text = ActualBuildF1+"/"+BuildNeedF1;
@@ -185,7 +185,7 @@ public class Clicker : MonoBehaviour
             if (ActualBuildF2<BuildNeedF2)
             {
                 ActualBuildF2++;
-                int AlphaLevel = 100/BuildNeedF2;
+                float AlphaLevel = (100/BuildNeedF2)*0.01f;
                 ActualColorF2.a = AlphaLevel*ActualBuildF2;
                 buttonF2.GetComponent<Image>().color = ActualColorF2;
                 textF2.text = ActualBuildF2+"/"+BuildNeedF2;
@@ -206,7 +206,7 @@ public class Clicker : MonoBehaviour
             if (ActualBuildF3<BuildNeedF3)
             {
                 ActualBuildF3++;
-                int AlphaLevel = 100/BuildNeedF3;
+                float AlphaLevel = (100/BuildNeedF3)*0.01f;
                 ActualColorF3.a = AlphaLevel*ActualBuildF3;
                 buttonF3.GetComponent<Image>().color = ActualColorF3;
                 textF3.text = ActualBuildF3+"/"+BuildNeedF3;

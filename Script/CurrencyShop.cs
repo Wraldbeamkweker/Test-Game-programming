@@ -4,7 +4,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 
-public class Currency : MonoBehaviour
+public class CurrencyShop : MonoBehaviour
 {
     public GameObject App;
     public Camera background;
@@ -69,7 +69,7 @@ public class Currency : MonoBehaviour
         {
             if (currency >= 5000)
             {
-                App.GetComponent<SwitchGameShop>().setBuildingColor(ChangeColorBuild.GetComponent<Image>().color);
+                App.GetComponent<GestionnaireCanvas>().setBuildingColor(ChangeColorBuild.GetComponent<Image>().color);
                 ChangeColorBuild.GetComponent<Image>().color = new Color(Random.Range(0.0f,1.0f),Random.Range(0.0f,1.0f),Random.Range(0.0f,1.0f));
                 currency -= 5000;
                 KeepBuild.isOn = false;

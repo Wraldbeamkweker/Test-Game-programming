@@ -4,7 +4,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 
-public class SwitchGameShop : MonoBehaviour
+public class GestionnaireCanvas : MonoBehaviour
 {
     public Canvas game;
     public Canvas shop;
@@ -29,7 +29,7 @@ public class SwitchGameShop : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartBut.onClick.AddListener(() => OnClick());
+        StartBut.onClick.AddListener(() => StartGame());
     }
 
     // Update is called once per frame
@@ -54,10 +54,10 @@ public class SwitchGameShop : MonoBehaviour
             result.enabled = false;
         }
     }
-    void OnClick()
+    void StartGame()
     {
         ingame = true;
-        game.GetComponent<Clicker>().restart(ActualBuilding);
-        currency.GetComponent<Currency>().restartIncome();
+        game.GetComponent<Game>().restart(ActualBuilding);
+        currency.GetComponent<CurrencyShop>().restartIncome();
     }
 }

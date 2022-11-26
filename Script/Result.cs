@@ -44,7 +44,7 @@ public class Result : MonoBehaviour
     }
     void OnClick()
     {
-        app.GetComponent<SwitchGameShop>().setInresult(false);
-        currency.GetComponent<Currency>().NewColor();
+        app.GetComponent<GestionnaireCanvas>().setInresult(false);
+        currency.GetComponent<CurrencyShop>().NewColor();
     }
 }

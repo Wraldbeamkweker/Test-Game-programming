@@ -8,9 +8,9 @@ public class Game : MonoBehaviour
 {
     public GameObject currency;
     public GameObject app;
-    public Canvas result;
+    public GameObject boss;
     public Image ennemy;
-    public Image boss;
+    public Canvas result;
     public Text timerRed;
     public Text timerOrange;
     public Text textF1;
@@ -67,10 +67,12 @@ public class Game : MonoBehaviour
     int NewAttack()
     {
         OrangeTimer = 400;
-        int NewAssaut = Random.Range(1,3);
-        while (((NewAssaut == 1 && rewardF1) || (NewAssaut == 2 && rewardF2) || (NewAssaut == 3 && rewardF3))&&!reward)
+        int NewAssaut = Random.Range(1,4);
+        int Verification = 0;
+        while (((NewAssaut == 1 && rewardF1) || (NewAssaut == 2 && rewardF2) || (NewAssaut == 3 && rewardF3))&& !reward && Verification<9)
         {
-            NewAssaut = Random.Range(1,3);
+            NewAssaut = Random.Range(1,4);
+            Verification++;
         }
         return NewAssaut;
     }
@@ -106,19 +108,28 @@ public class Game : MonoBehaviour
             RedTimer--;
             OrangeTimer--;
             timerRed.text = (int)(RedTimer/6000)+":"+(int)((RedTimer%6000)/100);
-            timerOrange.text = (int)(OrangeTimer/6000)+":"+(int)((OrangeTimer%6000)/100)+" On floor "+cibleOrange;
-            /*if (cibleOrange ==  1)
+            timerOrange.text = (int)(OrangeTimer/6000)+":"+(int)((OrangeTimer%6000)/100);
+            Vector3 bossPos = buttonF2.GetComponent<Transform>().position;
+            bossPos.x = bossPos.x+((RedTimer/10)+90);
+            boss.GetComponent<Transform>().position = bossPos;
+            if (cibleOrange ==  1)
             {
-                ennemy.transform.position = new Vector3(buttonF1.transform.position.x-(timerOrange/100),ennemy.transform.position.y,ennemy.transform.position.z);
+                Vector2 ennemyPos = buttonF1.GetComponent<RectTransform>().position;
+                ennemyPos.x = ennemyPos.x-((OrangeTimer/3)+90);
+                ennemy.GetComponent<RectTransform>().position = ennemyPos;
             }
             if (cibleOrange == 2)
             {
-                ennemy.transform.position = new Vector3(buttonF2.transform.position.x-(timerOrange/100),ennemy.transform.position.y,ennemy.transform.position.z);
+                Vector2 ennemyPos = buttonF2.GetComponent<RectTransform>().position;
+                ennemyPos.x = ennemyPos.x-((OrangeTimer/3)+90);
+                ennemy.GetComponent<RectTransform>().position = ennemyPos;
             }
             if (cibleOrange == 3)
             {
-                ennemy.transform.position = new Vector3(buttonF3.transform.position.x-(timerOrange/100),ennemy.transform.position.y,ennemy.transform.position.z);
-            }*/
+                Vector2 ennemyPos = buttonF3.GetComponent<RectTransform>().position;
+                ennemyPos.x = ennemyPos.x-((OrangeTimer/3)+90);
+                ennemy.GetComponent<RectTransform>().position = ennemyPos;
+            }
             if (RedTimer <= 0 || (OrangeTimer <= 0 && cibleOrange == 1 && !rewardF1) || (OrangeTimer <= 0 && cibleOrange == 2 && !rewardF2) || (OrangeTimer <= 0 && cibleOrange == 3 && !rewardF3))
             {
                 GameOver();
@@ -133,15 +144,15 @@ public class Game : MonoBehaviour
                ActualColorF1.a = (100/BuildNeedF1)*0.01f*ActualBuildF1;
                buttonF1.GetComponent<Image>().color = ActualColorF1;
                textF1.text = ActualBuildF1+"/"+BuildNeedF1;
-        }
-        else if (number == 1 && !rewardF1)
-        {
-            currency.GetComponent<CurrencyShop>().addCurrency(200);
-            rewardF1 = true;
-            if (cibleOrange == 1)
-            {
-                cibleOrange = NewAttack();
-            }
+               if (ActualBuildF1==BuildNeedF1 && !rewardF1)
+               {
+                   currency.GetComponent<CurrencyShop>().addCurrency(200);
+                   rewardF1 = true;
+                   if (cibleOrange == 1)
+                   {
+                       cibleOrange = NewAttack();
+                   }
+               }
         }
         if (number == 2 && ActualBuildF2<BuildNeedF2)
         {
@@ -149,14 +160,14 @@ public class Game : MonoBehaviour
             ActualColorF2.a = (100/BuildNeedF2)*0.01f*ActualBuildF2;
             buttonF2.GetComponent<Image>().color = ActualColorF2;
             textF2.text = ActualBuildF2+"/"+BuildNeedF2;
-        }
-        else if (number == 2 && !rewardF2)
-        {
-            currency.GetComponent<CurrencyShop>().addCurrency(200);
-            rewardF2 = true;
-            if (cibleOrange == 2)
+            if (ActualBuildF2==BuildNeedF2 && !rewardF2)
             {
-                cibleOrange = NewAttack();
+                currency.GetComponent<CurrencyShop>().addCurrency(200);
+                rewardF2 = true;
+                if (cibleOrange == 2)
+                {
+                    cibleOrange = NewAttack();
+                }
             }
         }
         if (number == 3 && ActualBuildF3<BuildNeedF3)
@@ -165,14 +176,14 @@ public class Game : MonoBehaviour
             ActualColorF3.a = (100/BuildNeedF3)*0.01f*ActualBuildF3;
             buttonF3.GetComponent<Image>().color = ActualColorF3;
             textF3.text = ActualBuildF3+"/"+BuildNeedF3;
-        }
-        else if (number == 3 && !rewardF3)
-        {
-            currency.GetComponent<CurrencyShop>().addCurrency(200);
-            rewardF3 = true;
-            if (cibleOrange == 3)
+            if (ActualBuildF3==BuildNeedF3 && !rewardF3)
             {
-                cibleOrange = NewAttack();
+                currency.GetComponent<CurrencyShop>().addCurrency(200);
+                rewardF3 = true;
+                if (cibleOrange == 3)
+                {
+                    cibleOrange = NewAttack();
+                }
             }
         }
     }

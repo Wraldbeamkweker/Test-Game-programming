@@ -42,8 +42,8 @@ public class CurrencyShop : MonoBehaviour
     {
         KeepBack.isOn = false;
         KeepBuild.isOn = false;
-        ChangeColorBack.onClick.AddListener(() => OnClick(1));
-        ChangeColorBuild.onClick.AddListener(() => OnClick(2));
+        ChangeColorBack.onClick.AddListener(() => Achat(1));
+        ChangeColorBuild.onClick.AddListener(() => Achat(2));
     }
 
     // Update is called once per frame
@@ -53,7 +53,7 @@ public class CurrencyShop : MonoBehaviour
         background.backgroundColor = Actualbackground;
         IncomeText.text = ""+incomePart;
     }
-    void OnClick(int type)
+    void Achat(int type)
     {
         if (type == 1)
         {

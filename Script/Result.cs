@@ -21,7 +21,7 @@ public class Result : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Returnbut.onClick.AddListener(() => OnClick());
+        Returnbut.onClick.AddListener(() => GoShop());
     }
 
     // Update is called once per frame
@@ -42,7 +42,7 @@ public class Result : MonoBehaviour
             GameOver.enabled = true;
         }
     }
-    void OnClick()
+    void GoShop()
     {
         app.GetComponent<GestionnaireCanvas>().setInresult(false);
         currency.GetComponent<CurrencyShop>().NewColor();
